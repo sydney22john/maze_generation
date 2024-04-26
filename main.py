@@ -38,8 +38,7 @@ Design:
 import tkinter as tk
 from tkinter.ttk import Frame, Spinbox, Checkbutton, Combobox, Button
 
-from grid import Grid
-from cell import Cell
+from grid_controller import GridController
 from maze_generator import DepthFirstGenerator
 
 if __name__ == "__main__":
@@ -68,22 +67,20 @@ if __name__ == "__main__":
     canvas = tk.Canvas(master=frm_body, bg="lightblue", height=300, width=450)
     canvas.pack()
 
-    grid = Grid(5, 5)
-    dpg = DepthFirstGenerator()
-    dpg.generate(grid)
-    grid.draw(canvas)
+    grid_ctrl = GridController(canvas, 10, 10)
+    grid_ctrl.setGenerator(DepthFirstGenerator())
     # END body
 
     # START footer
     frm_footer = Frame(master=window)
 
-    btn_start = Button(master=frm_footer, text="Start")
+    btn_start = Button(master=frm_footer, text="Start", command=grid_ctrl.start)
     btn_start.pack(side=tk.LEFT)
 
     btn_stop = Button(master=frm_footer, text="Stop")
     btn_stop.pack(side=tk.LEFT)
 
-    btn_reset = Button(master=frm_footer, text="Reset")
+    btn_reset = Button(master=frm_footer, text="Reset", command=grid_ctrl.reset)
     btn_reset.pack(side=tk.LEFT)
 
     btn_export = Button(master=frm_footer, text="Export")

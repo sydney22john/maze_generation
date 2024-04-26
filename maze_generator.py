@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from grid import Grid
 from cell import break_wall
 
+# abstract MazeGenerator class
 class MazeGenerator(ABC):
 
     @abstractmethod
@@ -24,7 +25,6 @@ class DepthFirstGenerator(MazeGenerator):
         break wall between c & n
         add n to stack
     """
-
     def generate(self, grid: Grid):
         current_cell = grid.getRandomCell()
         stack = [current_cell]
