@@ -35,12 +35,11 @@ Design:
 
 """
 
-from cell import Cell
-
 import tkinter as tk
 from tkinter.ttk import Frame, Spinbox, Checkbutton, Combobox, Button
 
 from grid import Grid
+from cell import Cell
 from maze_generator import DepthFirstGenerator
 
 if __name__ == "__main__":
