@@ -35,6 +35,8 @@ Design:
 
 """
 
+from cell import Cell
+
 import tkinter as tk
 from tkinter.ttk import Frame, Spinbox, Checkbutton, Combobox, Button
 
@@ -61,8 +63,17 @@ if __name__ == "__main__":
 
     # START body
     frm_body = Frame(master=window)
-    canvas = tk.Canvas(master=frm_body, bg="lightblue", height=100, width=150)
+    canvas = tk.Canvas(master=frm_body, bg="lightblue", height=300, width=450)
     canvas.pack()
+
+    cells = [[Cell(x, y) for x in range(1, 5)] for y in range(1, 5)]
+
+    for row in cells:
+        for cell in row:
+            cell.draw(canvas, 50)
+
+    canvas.update()
+
     # END body
 
     # START footer
