@@ -40,6 +40,9 @@ from cell import Cell
 import tkinter as tk
 from tkinter.ttk import Frame, Spinbox, Checkbutton, Combobox, Button
 
+from grid import Grid
+from maze_generator import DepthFirstGenerator
+
 if __name__ == "__main__":
     window = tk.Tk()
 
@@ -66,14 +69,10 @@ if __name__ == "__main__":
     canvas = tk.Canvas(master=frm_body, bg="lightblue", height=300, width=450)
     canvas.pack()
 
-    cells = [[Cell(x, y) for x in range(1, 5)] for y in range(1, 5)]
-
-    for row in cells:
-        for cell in row:
-            cell.draw(canvas, 50)
-
-    canvas.update()
-
+    grid = Grid(5, 5)
+    dpg = DepthFirstGenerator()
+    dpg.generate(grid)
+    grid.draw(canvas)
     # END body
 
     # START footer
