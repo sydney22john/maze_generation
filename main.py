@@ -43,6 +43,14 @@ from maze_generator import DepthFirstGenerator
 
 if __name__ == "__main__":
     window = tk.Tk()
+    # START body
+    frm_body = Frame(master=window)
+    canvas = tk.Canvas(master=frm_body, bg="lightblue", height=500, width=550)
+    canvas.pack()
+    # END body
+
+    grid_ctrl = GridController(canvas, 10, 10)
+    grid_ctrl.setGenerator(DepthFirstGenerator())
 
     # START header
     frm_header = Frame(master=window)
@@ -53,23 +61,16 @@ if __name__ == "__main__":
     btn_yes_no = Checkbutton(master=frm_header, text="Animate")
     btn_yes_no.pack(side=tk.LEFT)
 
-    scl_size_w = Spinbox(master=frm_header, from_=10.0, to=50.0, increment=1.0)
+    scl_size_w = Spinbox(master=frm_header, from_=10.0, to=50.0, increment=1.0, command=grid_ctrl.callMount("scl_size_w"))
+    grid_ctrl.mountWidget("scl_size_w", scl_size_w, grid_ctrl.setX)
     scl_size_w.set(10)
     scl_size_w.pack(side=tk.LEFT)
 
-    scl_size_h = Spinbox(master=frm_header, from_=10.0, to=50.0, increment=1.0)
+    scl_size_h = Spinbox(master=frm_header, from_=10.0, to=50.0, increment=1.0, command=grid_ctrl.callMount("scl_size_h"))
+    grid_ctrl.mountWidget("scl_size_h", scl_size_h, grid_ctrl.setY)
     scl_size_h.set(10)
     scl_size_h.pack(side=tk.LEFT)
     # END header
-
-    # START body
-    frm_body = Frame(master=window)
-    canvas = tk.Canvas(master=frm_body, bg="lightblue", height=300, width=450)
-    canvas.pack()
-
-    grid_ctrl = GridController(canvas, 10, 10)
-    grid_ctrl.setGenerator(DepthFirstGenerator())
-    # END body
 
     # START footer
     frm_footer = Frame(master=window)
@@ -87,7 +88,7 @@ if __name__ == "__main__":
     btn_export.pack(side=tk.LEFT)
 
     scl_speed = Spinbox(master=frm_footer)
-    scl_speed.pack(side=tk.BOTTOM)
+    scl_speed.pack(side=tk.LEFT)
     # END footer
 
     frm_header.pack()

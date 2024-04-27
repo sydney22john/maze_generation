@@ -6,12 +6,12 @@ class Grid:
     def __init__(self, width, height) -> None:
         self.width = width
         self.height = height
-        self.cells = [[Cell(y, x) for x in range(width)] for y in range(height)]
+        self.cells = [[Cell(x, y) for x in range(width)] for y in range(height)]
 
     def draw(self, canvas) -> None:
         for row in self.cells:
             for cell in row:
-                cell.draw(canvas, 25)
+                cell.draw(canvas, 15)
 
     def getRandomCell(self) -> Cell:
         rand_x = rand.randint(0, self.width - 1)
@@ -40,7 +40,7 @@ class Grid:
         if x < 0 or x >= len(self.cells[0]) \
             or y < 0 or y >= len(self.cells):
             return None
-        return self.cells[x][y]
+        return self.cells[y][x]
 
     def nextRandomNeighbor(self, cell: Cell) -> Cell | None:
         unvisisted_neighbor = list(filter(lambda c: not c.visited, self.getCellNeighbors(cell)))

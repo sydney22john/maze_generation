@@ -9,6 +9,7 @@ class GridController:
         self.x = x
         self.y = y
         self.grid = Grid(self.x, self.y)
+        self.mounts = {}
 
     def setGenerator(self, generator: MazeGenerator):
         self.generator = generator
@@ -22,3 +23,22 @@ class GridController:
         self.generator.generate(self.grid)
         self.canvas.delete("all")
         self.grid.draw(self.canvas)
+
+    def setX(self, x):
+        self.x = x
+        self.reset()
+
+    def setY(self, y):
+        self.y = y
+        self.reset()
+
+    def mountWidget(self, id, widget, callback):
+        self.mounts[id] = (widget, callback)
+
+
+    def callMount(self, id):
+        def closure():
+            widget, callback = self.mounts[id]
+            callback(int(widget.get()))
+
+        return closure
