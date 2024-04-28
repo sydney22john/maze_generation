@@ -35,10 +35,13 @@ Design:
 
 """
 
-from grid_controller import GridController
-from maze_generator import DepthFirstGenerator
+from maze_control import MazeControl
 from maze_view import View
+from grid import Grid
+
+def main():
+    control = MazeControl(Grid(5, 5), View())
+    control.view.mainloop()
 
 if __name__ == "__main__":
-    app = View()
-    app.mainloop()
+    main()

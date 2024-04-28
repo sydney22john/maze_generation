@@ -35,7 +35,6 @@ class GridController:
     def mountWidget(self, id, widget, callback):
         self.mounts[id] = (widget, callback)
 
-
     def callMount(self, id):
         def closure():
             widget, callback = self.mounts[id]
