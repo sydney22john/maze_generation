@@ -36,11 +36,11 @@ Design:
 """
 
 from maze_control import MazeControl
-from maze_view import View
+from maze_view import MazeView
 from grid import Grid
 
 def main():
-    control = MazeControl(Grid(5, 5), View())
+    control = MazeControl(Grid(5, 5), MazeView())
     control.view.mainloop()
 
 if __name__ == "__main__":
