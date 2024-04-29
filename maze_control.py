@@ -7,20 +7,20 @@ class MazeControl:
 
         self.model = model
 
-    def start(self):
-        print("start")
+    def start(self, canvas):
+        self.model.start(canvas)
 
     def stop(self):
         print("stop")
 
-    def reset(self):
-        print("reset")
+    def reset(self, canvas):
+        self.model.reset(canvas)
 
     def export(self):
         print("export")
 
     def setWidth(self, width):
-        print(width)
+        self.model.setWidth(width)
 
     def setHeight(self, height):
-        print(height)
+        self.model.setHeight(height)

@@ -37,10 +37,10 @@ Design:
 
 from maze_control import MazeControl
 from maze_view import MazeView
-from grid import Grid
+from maze_model import MazeModel
 
 def main():
-    control = MazeControl(Grid(5, 5), MazeView())
+    control = MazeControl(MazeModel(), MazeView())
     control.view.mainloop()
 
 if __name__ == "__main__":

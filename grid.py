@@ -8,6 +8,9 @@ class Grid:
         self.height = height
         self.cells = [[Cell(x, y) for x in range(width)] for y in range(height)]
 
+    def reset(self):
+        self.cells = [[Cell(x, y) for x in range(self.width)] for y in range(self.height)]
+
     def draw(self, canvas) -> None:
         for row in self.cells:
             for cell in row:

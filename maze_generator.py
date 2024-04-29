@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from grid import Grid
 from cell import break_wall
+from grid import Grid
 
 # abstract MazeGenerator class
 class MazeGenerator(ABC):
@@ -10,7 +10,6 @@ class MazeGenerator(ABC):
         pass
 
 class DepthFirstGenerator(MazeGenerator):
-
     """
     pseudocode:
     pick random start cell
@@ -25,7 +24,7 @@ class DepthFirstGenerator(MazeGenerator):
         break wall between c & n
         add n to stack
     """
-    def generate(self, grid: Grid):
+    def generate(self, grid: Grid) -> None:
         current_cell = grid.getRandomCell()
         stack = [current_cell]
 
