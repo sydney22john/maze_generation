@@ -1,4 +1,7 @@
 
+from maze_view import CANVAS_WIDTH
+
+
 class MazeControl:
 
     def __init__(self, model, view) -> None:
@@ -10,7 +13,8 @@ class MazeControl:
     def start(self, canvas):
         self.model.start()
         canvas.delete('all')
-        self.model.draw(canvas)
+        length, padding = self.calcDrawingParams()
+        self.model.draw(canvas, length, padding)
 
     def stop(self):
         print("stop")
@@ -18,15 +22,23 @@ class MazeControl:
     def reset(self, canvas):
         self.model.reset()
         canvas.delete('all')
-        self.model.draw(canvas)
+        length, padding = self.calcDrawingParams()
+        self.model.draw(canvas, length, padding)
 
     def export(self):
         print("export")
 
     def setWidth(self, width):
         self.model.setWidth(width)
-        self.model.reset(self.view.canvas.canvas)
+        self.reset(self.view.canvas.canvas)
 
     def setHeight(self, height):
         self.model.setHeight(height)
-        self.model.reset(self.view.canvas.canvas)
+        self.reset(self.view.canvas.canvas)
+
+    def calcDrawingParams(self):
+        min_padding = 10
+        max_cells = max(self.model.grid.width, self.model.grid.height)
+        length = (CANVAS_WIDTH - min_padding * 2) / max_cells
+        return length, min_padding
+

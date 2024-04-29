@@ -2,10 +2,13 @@
 import tkinter as tk
 from tkinter.ttk import Spinbox, Checkbutton, Combobox, Button
 
-MIN_WIDTH = 3.0
-MIN_HEIGHT = 3.0
-MAX_WIDTH = 30.0
-MAX_HEIGHT = 30.0
+MIN_WIDTH = 3
+MIN_HEIGHT = 3
+MAX_WIDTH = 30
+MAX_HEIGHT = 30
+
+CANVAS_WIDTH = 600
+CANVAS_HEIGHT = 600
 
 class Header(tk.Frame):
 
@@ -36,7 +39,7 @@ class Canvas(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
 
-        self.canvas = tk.Canvas(self, bg="lightblue", height=500, width=550)
+        self.canvas = tk.Canvas(self, bg="lightblue", height=CANVAS_HEIGHT, width=CANVAS_WIDTH)
 
         self.canvas.pack(side=tk.LEFT)
 

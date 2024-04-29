@@ -11,10 +11,10 @@ class Grid:
     def reset(self):
         self.cells = [[Cell(x, y) for x in range(self.width)] for y in range(self.height)]
 
-    def draw(self, canvas) -> None:
+    def draw(self, canvas, length, padding) -> None:
         for row in self.cells:
             for cell in row:
-                cell.draw(canvas, 15)
+                cell.draw(canvas, length, padding)
 
     def getRandomCell(self) -> Cell:
         rand_x = rand.randint(0, self.width - 1)
