@@ -8,13 +8,17 @@ class MazeControl:
         self.model = model
 
     def start(self, canvas):
-        self.model.start(canvas)
+        self.model.start()
+        canvas.delete('all')
+        self.model.draw(canvas)
 
     def stop(self):
         print("stop")
 
     def reset(self, canvas):
-        self.model.reset(canvas)
+        self.model.reset()
+        canvas.delete('all')
+        self.model.draw(canvas)
 
     def export(self):
         print("export")

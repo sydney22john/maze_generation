@@ -15,15 +15,11 @@ class MazeModel:
     def draw(self, canvas) -> None:
         self.grid.draw(canvas)
 
-    def reset(self, canvas):
+    def reset(self):
         self.grid.reset()
-        canvas.delete('all')
-        self.draw(canvas)
 
-    def start(self, canvas):
+    def start(self):
         self.generator.generate(self.grid)
-        canvas.delete('all')
-        self.draw(canvas)
 
     def setWidth(self, width):
         self.grid = Grid(width, self.grid.height)
