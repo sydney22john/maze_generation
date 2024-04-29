@@ -27,11 +27,9 @@ class Header(tk.Frame):
 
     def setWidth(self):
         self.master.control.setWidth(int(self.scl_size_w.get()))
-        self.master.footer.reset()
 
     def setHeight(self):
         self.master.control.setHeight(int(self.scl_size_h.get()))
-        self.master.footer.reset()
 
 
 class Canvas(tk.Frame):

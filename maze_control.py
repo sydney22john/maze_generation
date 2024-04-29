@@ -21,6 +21,8 @@ class MazeControl:
 
     def setWidth(self, width):
         self.model.setWidth(width)
+        self.model.reset(self.view.canvas.canvas)
 
     def setHeight(self, height):
         self.model.setHeight(height)
+        self.model.reset(self.view.canvas.canvas)
