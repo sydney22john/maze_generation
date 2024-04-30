@@ -38,4 +38,8 @@ class DepthFirstGenerator(MazeGenerator):
                 continue
             break_wall(current_cell, neighbor)
             stack.append(neighbor)
-            
+
+name_to_algo_map = {
+    "recursive": DepthFirstGenerator,
+}
+

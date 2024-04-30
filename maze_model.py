@@ -2,13 +2,14 @@
 import maze_generator as gen
 
 from grid import Grid
-from maze_view import MIN_HEIGHT, MIN_WIDTH
+from maze_view import DEFAULT_ALGO, MIN_HEIGHT, MIN_WIDTH
+from maze_generator import name_to_algo_map
 
 class MazeModel:
     
     def __init__(self, width=MIN_WIDTH, height=MIN_HEIGHT) -> None:
         self.grid = Grid(width, height)
-        self.generator = gen.DepthFirstGenerator()
+        self.generator = name_to_algo_map[DEFAULT_ALGO]()
 
     def setGenerator(self, generator: gen.MazeGenerator) -> None:
         self.generator = generator

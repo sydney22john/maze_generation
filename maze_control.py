@@ -1,10 +1,13 @@
 
-from maze_view import CANVAS_WIDTH
+import tkinter as tk
+from maze_model import MazeModel
+from maze_view import CANVAS_WIDTH, MazeView
+from maze_generator import name_to_algo_map
 
 
 class MazeControl:
 
-    def __init__(self, model, view) -> None:
+    def __init__(self, model: MazeModel, view: MazeView) -> None:
         self.view = view
         self.view.setControl(self)
 
@@ -43,4 +46,11 @@ class MazeControl:
         max_cells = max(self.model.grid.width, self.model.grid.height)
         length = (CANVAS_WIDTH - min_padding * 2) / max_cells
         return length, min_padding
+
+    def setAlgo(self, event: tk.Event):
+        algo = event.widget.get()
+        if algo not in name_to_algo_map:
+            print("Error: couldn't find algorithm")
+            return
+        self.model.setGenerator(name_to_algo_map[algo]())
 
