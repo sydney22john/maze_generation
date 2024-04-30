@@ -1,2 +1,5 @@
 # ignore lsp config file
 pyrightconfig.json
+
+# ignore pycache
+__pycache__/
