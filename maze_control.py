@@ -10,6 +10,8 @@ class MazeControl:
 
         self.model = model
 
+        self.reset(self.view.canvas.canvas)
+
     def start(self, canvas):
         self.model.start()
         canvas.delete('all')
