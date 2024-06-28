@@ -1,6 +1,9 @@
 from cell import Cell
 import random as rand
 
+"""
+The data structure the manipulates the cells based on the maze generation algorithm
+"""
 class Grid:
 
     def __init__(self, width, height) -> None:
@@ -22,7 +25,12 @@ class Grid:
 
         return self.cells[rand_y][rand_x]
 
+    """
+    returns all neighboring cells. Filters out cells that are outside the bounds of the cells array
+    """
     def getCellNeighbors(self, cell: Cell) -> list[Cell]:
+        # NOTE: getCell could return None if the coordinates passed in are outside the bounds of the cells array
+        # NOTE: that is why we filter l later
         l = [
             self.getCell(cell.x, cell.y - 1),
             self.getCell(cell.x + 1, cell.y),
@@ -39,13 +47,15 @@ class Grid:
             return new_l
         return filter_nones(l)
 
+    # returns a cell within the grid. If the x, y positions are outside the bounds of the cell array then None is returned
     def getCell(self, x, y) -> Cell | None:
         if x < 0 or x >= len(self.cells[0]) \
             or y < 0 or y >= len(self.cells):
             return None
         return self.cells[y][x]
 
-    def nextRandomNeighbor(self, cell: Cell) -> Cell | None:
+    # returns a random cell that neighbors the cell passed in 
+    def getRandomNeighbor(self, cell: Cell) -> Cell | None:
         unvisisted_neighbor = list(filter(lambda c: not c.visited, self.getCellNeighbors(cell)))
         if len(unvisisted_neighbor) == 0:
             return None

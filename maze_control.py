@@ -6,30 +6,44 @@ from maze_generator import name_to_algo_map
 
 
 class MazeControl:
+    MIN_PADDING = 10
 
     def __init__(self, model: MazeModel, view: MazeView) -> None:
+        # giving the control references to the model and view
+        # the controller communicates to the model and view based on user input
         self.view = view
         self.view.setControl(self)
 
         self.model = model
 
+        # initial rendering of the maze on the screen
         self.reset(self.view.canvas.canvas)
 
+    """
+    starts the maze generation algorithm
+    this function is called by the view
+    """
     def start(self, canvas):
-        self.model.start()
+        self.model.generate()
         canvas.delete('all')
         length, padding = self.calcDrawingParams()
         self.model.draw(canvas, length, padding)
 
+    # not implemented 
     def stop(self):
         print("stop")
 
+    """
+    resets the maze 
+    this function is called by the view
+    """
     def reset(self, canvas):
         self.model.reset()
         canvas.delete('all')
         length, padding = self.calcDrawingParams()
         self.model.draw(canvas, length, padding)
 
+    # not implemented 
     def export(self):
         print("export")
 
@@ -41,11 +55,13 @@ class MazeControl:
         self.model.setHeight(height)
         self.reset(self.view.canvas.canvas)
 
+    """
+    Helper function to determine the size of each cell in order to properly fit within the UI
+    """
     def calcDrawingParams(self):
-        min_padding = 10
         max_cells = max(self.model.grid.width, self.model.grid.height)
-        length = (CANVAS_WIDTH - min_padding * 2) / max_cells
-        return length, min_padding
+        length = (CANVAS_WIDTH - self.MIN_PADDING * 2) / max_cells
+        return length, self.MIN_PADDING
 
     def setAlgo(self, event: tk.Event):
         algo = event.widget.get()

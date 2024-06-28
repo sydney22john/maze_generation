@@ -14,13 +14,15 @@ class MazeModel:
     def setGenerator(self, generator: gen.MazeGenerator) -> None:
         self.generator = generator
 
+    # updates the view
     def draw(self, canvas, length, padding) -> None:
         self.grid.draw(canvas, length, padding)
 
+    # resets the maze data structure which is held in grid
     def reset(self) -> None:
         self.grid.reset()
 
-    def start(self) -> None:
+    def generate(self) -> None:
         self.generator.generate(self.grid)
 
     def setWidth(self, width) -> None:

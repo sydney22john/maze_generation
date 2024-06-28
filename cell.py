@@ -18,21 +18,28 @@ class Cell:
         if self.walls[Direction.LEFT]:
             canvas.create_line([(self.x * length + padding, self.y * length + padding), (self.x * length + padding, self.y * length + padding + length)], width=2)
 
+"""
+Removes the walls between two neighboring cells
+"""
 def break_wall(a: Cell, b: Cell):
     match (a.x - b.x, a.y - b.y):
-        # a is on TOP
+        # a is above b
         case (0, -1):
             a.walls[Direction.BOTTOM] = False
             b.walls[Direction.TOP] = False
-        # a is on BOTTOM
+        # a is blow b
         case (0, 1):
             a.walls[Direction.TOP] = False
             b.walls[Direction.BOTTOM] = False
-        # a is on RIGHT
+        # a is to the right of b
         case (1, 0):
             a.walls[Direction.LEFT] = False
             b.walls[Direction.RIGHT] = False
-        # a is on LEFT
+        # a is to the left of b
         case (-1, 0):
             a.walls[Direction.RIGHT] = False
             b.walls[Direction.LEFT] = False
+        
+        # default catch all case
+        case _:
+            print(f"Error: cell at ({a.x}, {a.y}) and cell at ({b.x}, {b.y}) aren't neighbors")
